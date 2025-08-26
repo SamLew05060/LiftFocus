@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Free no-equipment workouts and dorm-friendly recipes for students. Stay fit in 10 minutes a day with LiftFocus.">
+  <title>LiftFocus — No-Equipment Workouts for Students</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+
+    /* === COLORS === */
+    :root {
+      --primary: #1E66C7;
+      --primary-light: #3a80e0;
+      --primary-dark: #164d96;
+      --silver-light: #f0f0f0;
+      --silver: #e0e0e0;
+      --silver-dark: #ccc;
+      --white: #fff;
+      --shadow: 0 4px 15px rgba(30, 102, 199, 0.15);
+    }
+
+    /* Top Header / Menu - Sticky & 60px Tall */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-bottom: 1px solid var(--silver);
+    }
+
+    .logo a {
+      display: block;
+    }
+
+    .logo img {
+      height: 90px;
+      width: auto;
+      transition: transform 0.6s ease-out;
+    }
+
+    .logo img:hover {
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    /* Main Content Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      padding-top: 80px; /* Space below the fixed 60px header */
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('./hero/exercise_two01.jpg') center/cover no-repeat;
+      background-color: #1E66C7; /* Fallback color if image fails */
+      color: white;
+      text-align: center;
+      padding: 140px 20px 100px;
+      position: relative;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(30, 102, 199, 0.5));
+      border-radius: 12px;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto 25px;
+      opacity: 0.95;
+    }
+
+    /* CTA Button */
+    .cta-btn {
+      background: var(--white);
+      color: var(--primary);
+      font-size: 1.2em;
+      padding: 14px 35px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(30, 102, 199, 0.2);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30, 102, 199, 0.3);
+      background: var(--primary-light);
+      color: white;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .benefits h2 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+
+    .benefit-cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      min-width: 280px;
+      max-width: 320px;
+      flex: 1;
+      transition: transform 0.3s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+
+    .feature-grid {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+    }
+
+    .feature {
+      padding: 20px;
+      background: var(--silver-light);
+      border-radius: 10px;
+      min-width: 220px;
+      flex: 1;
+      transition: transform 0.3s;
+      border: 1px solid var(--silver);
+      text-align: center;
+    }
+
+    .feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-light);
+    }
+
+    .f-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .benefit-cards, .feature-grid {
+        flex-wrap: wrap;
+      }
+      .card, .feature {
+        min-width: 250px;
+        flex-basis: 100%;
+      }
+      .hero h1 {
+        font-size: 2em;
+      }
+      .hero p {
+        font-size: 1.1em;
+      }
+    }
+
+    /* How It Works */
+    .how-it-works {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--silver-light);
+      border-radius: 12px;
+      margin: 50px 0;
+      border: 1px solid var(--silver);
+    }
+
+    .how-it-works h2 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .step {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .number {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      line-height: 35px;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    /* Video & Recipe */
+    .video-section, .recipe-section {
+      background: var(--white);
+      padding: 35px;
+      margin: 30px 0;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid var(--silver);
+    }
+
+    .video-wrapper {
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--silver-dark);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    .recipe-section ul {
+      list-style: none;
+      margin: 20px auto;
+      max-width: 400px;
+      text-align: left;
+    }
+
+    .recipe-section li {
+      margin: 10px 0;
+      padding-left: 25px;
+      position: relative;
+      color: #333;
+    }
+
+    .recipe-section li::before {
+      content: "✓";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .recipe-details {
+      margin: 15px 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .recipe-tip {
+      background: #f8f9fa;
+      border-left: 4px solid var(--primary);
+      padding: 12px;
+      margin: 15px 0;
+      text-align: left;
+      font-size: 0.95em;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Signup Section */
+    .signup-section {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--silver-light);
+      border-radius: 12px;
+      margin: 50px 0;
+      border: 1px solid var(--silver);
+    }
+
+    .signup-section h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .signup-section p {
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .small {
+      display: block;
+      margin-top: 10px;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    .signup-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .signup-form input[type="email"] {
+      padding: 15px;
+      font-size: 1em;
+      border: 1px solid var(--silver-dark);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: var(--white);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .signup-form input[type="email"]:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(30, 102, 199, 0.2);
+    }
+
+    .signup-form button {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(30, 102, 199, 0.2);
+      transition: background 0.3s, transform 0.2s;
+      width: 100%;
+    }
+
+    .signup-form button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 0.95em;
+      border-top: 1px solid var(--silver);
+    }
+
+    .footer strong {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header / Menu - Now 60px and Sticky -->
+  <header class="top-header">
+    <div class="logo">
+      <a href="#home">
+        <img src='./logo/logo.png' alt="LiftFocus Logo">
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <h1>Stay Fit in 10 Minutes</h1>
+      <h1>No Gym, No Gear</h1>
+      <p>Busy student or professional? Get stronger, energized, and consistent — using only your body and your schedule.</p>
+      <a href="#signup" class="cta-btn">Get Free 7-Day Challenge</a>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+      <h2>You Don’t Need More Time — Just Better Habits</h2>
+      <div class="benefit-cards">
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>No More All-or-Nothing</h3>
+          <p>Missed a day? No guilt. Just 10 minutes tomorrow.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Wake Up Your Brain</h3>
+          <p>Start your day sharp — no coffee needed.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14c-3.866 0-7 1.79-7 4v3h14v-3c0-2.21-3.134-4-7-4z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Feel Stronger Every Week</h3>
+          <p>Not ripped — just capable, confident, and in control.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <h2>How We Make It Effortless</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <svg class="f-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14v-4z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 17V7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>10-Minute Daily Videos</h3>
+          <p>Short routines you can do between classes or after work.</p>
+        </div>
+        <div class="feature">
+          <svg class="f-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>No Equipment Needed</h3>
+          <p>Just your body, floor, and 10 minutes.</p>
+        </div>
+        <div class="feature">
+          <svg class="f-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#1E66C7" stroke-width="2"/>
+            <path d="M12 6v6l4 2" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>No Eating After 8PM</h3>
+          <p>Simple cutoff to reset energy — no dieting.</p>
+        </div>
+        <div class="feature">
+          <svg class="f-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 8h10M7 12h4M7 16h8M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="#1E66C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Dorm-Friendly Recipes</h3>
+          <p>No stove? No problem. Fuel your body simply.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <h2>How LiftFocus Works (In Real Life)</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="number">1</span>
+          <h3>Do 1 Short Workout</h3>
+          <p>Every day at 7AM, 12PM, or 8PM — your choice.</p>
+        </div>
+        <div class="step">
+          <span class="number">2</span>
+          <h3>Eat Freely — Stop at 8PM</h3>
+          <p>No dieting. Just a simple cutoff to reset your energy.</p>
+        </div>
+        <div class="step">
+          <span class="number">3</span>
+          <h3>Use What You Have</h3>
+          <p>Floor, wall, chair — that's all you need.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Video Section -->
+    <section class="video-section">
+      <h2>See It in Action: Try Our 5-Minute Wake-Up Routine</h2>
+      <div class="video-wrapper">
+        <video controls>
+          <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p><small style="font-size: 18px; font-weight: normal; display: block; margin-top: 10px;">Created by LiftFocus’s CEO. Want more? Get free weekly workouts & recipes.</small></p>
+    </section>
+
+
+        <!-- Recipe Section -->
+    <section class="recipe-section">
+      <h2>Fuel Up: No-Cook Energy Balls (Only 3 Ingredients!)</h2>
+      <p class="recipe-details">Ready in under 30 minutes | Makes 10–12 balls | No cooking required</p>
+      <ul>
+        <li><strong>1 cup (90g)</strong> rolled oats</li>
+        <li><strong>½ cup (130g)</strong> peanut butter</li>
+        <li><strong>2 tbsp (30ml)</strong> honey</li>
+      </ul>
+      <div class="recipe-tip">
+        <strong>Optional:</strong> Add cinnamon, chia seeds, or chocolate chips.
+      </div>
+      <p><strong>Make:</strong> Mix, roll, chill 20 mins. Store for 2 weeks.</p>
+      <div class="recipe-tip">
+        <strong>Pro Tip:</strong> Make a batch on Sunday — grab one each morning!
+      </div>
+    </section>
+
+
+<!-- Referral Section -->
+<section class="referral-section" style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1E66C7, #3a80e0); color: white; border-radius: 12px; margin: 50px 0;">
+  <h2 style="font-size: 1.8em; margin-bottom: 15px;">Tell Your Friends About LiftFocus</h2>
+  <p style="font-size: 1.1em; max-width: 600px; margin: 0 auto;">
+    Send your friends free access to our 7-day challenge. When they sign up, you both get bonus workouts — just for sharing.
+  </p>
+</section>
+
+    <!-- Signup Section -->
+    <section class="signup-section" id="signup">
+      <h2>Start Your 7-Day Challenge</h2>
+      <p>Join 500+ students getting free workouts, recipes, and habit tips.</p>
+      <p class="small">Only 100 free spots left — claim yours before we go premium.</p>
+
+      <form class="signup-form" action="https://app.mailerlite.com/webforms/submit/YOUR_FORM_ID" data-webform-id="YOUR_FORM_ID" method="POST" target="_blank">
+        <input type="email" name="fields[email]" placeholder="Your email (e.g., jess@nyu.edu)" required />
+        <button type="submit">Get the Free Plan</button>
+        <p class="small">Check your inbox for the 7-day challenge!</p>
+      </form>
+
+      <!-- MailerLite JS -->
+      <script src="https://cdn.mailerlite.com/js/webforms.min.js" defer></script>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Loved by students at <strong>NYU, University of Sydney, UOL</strong>, and more</p>
+      <p><small>Early access closing soon — join before we go premium.</small></p>
+    </footer>
+
+  </div>
+
+  <!-- Smooth Scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
