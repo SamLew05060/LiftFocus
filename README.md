@@ -81,4 +81,4 @@ We believe:
 ---
 
 > Created with care for real people with real schedules.  
-> © 20224 - 2025 LiftFocus — All rights reserved.
+> © 2024 - 2025 LiftFocus — All rights reserved.
