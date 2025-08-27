@@ -373,49 +373,6 @@
       font-size: 0.9em;
     }
 
-    .signup-form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .signup-form input[type="email"] {
-      padding: 15px;
-      font-size: 1em;
-      border: 1px solid var(--silver-dark);
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background: var(--white);
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .signup-form input[type="email"]:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(30, 102, 199, 0.2);
-    }
-
-    .signup-form button {
-      background: var(--primary);
-      color: white;
-      padding: 15px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(30, 102, 199, 0.2);
-      transition: background 0.3s, transform 0.2s;
-      width: 100%;
-    }
-
-    .signup-form button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
     /* Footer */
     .footer {
       text-align: center;
@@ -541,7 +498,6 @@
       </div>
     </section>
 
-
     <!-- Video Section -->
     <section class="video-section">
       <h2>See It in Action: Try Our 5-Minute Wake-Up Routine</h2>
@@ -554,8 +510,7 @@
       <p><small style="font-size: 18px; font-weight: normal; display: block; margin-top: 10px;">Created by LiftFocus’s CEO. Want more? Get free weekly workouts & recipes.</small></p>
     </section>
 
-
-        <!-- Recipe Section -->
+    <!-- Recipe Section -->
     <section class="recipe-section">
       <h2>Fuel Up: No-Cook Energy Balls (Only 3 Ingredients!)</h2>
       <p class="recipe-details">Ready in under 30 minutes | Makes 10–12 balls | No cooking required</p>
@@ -573,14 +528,13 @@
       </div>
     </section>
 
-
-<!-- Referral Section -->
-<section class="referral-section" style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1E66C7, #3a80e0); color: white; border-radius: 12px; margin: 50px 0;">
-  <h2 style="font-size: 1.8em; margin-bottom: 15px;">Tell Your Friends About LiftFocus</h2>
-  <p style="font-size: 1.1em; max-width: 600px; margin: 0 auto;">
-    Send your friends free access to our 7-day challenge. When they sign up, you both get bonus workouts — just for sharing.
-  </p>
-</section>
+    <!-- Referral Section -->
+    <section class="referral-section" style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1E66C7, #3a80e0); color: white; border-radius: 12px; margin: 50px 0;">
+      <h2 style="font-size: 1.8em; margin-bottom: 15px;">Tell Your Friends About LiftFocus</h2>
+      <p style="font-size: 1.1em; max-width: 600px; margin: 0 auto;">
+        Send your friends free access to our 7-day challenge. When they sign up, you both get bonus workouts — just for sharing.
+      </p>
+    </section>
 
     <!-- Signup Section -->
     <section class="signup-section" id="signup">
@@ -588,48 +542,45 @@
       <p>Join 500+ students getting free workouts, recipes, and habit tips.</p>
       <p class="small">Only 100 free spots left — claim yours before we go premium.</p>
 
-      <form class="signup-form" action="https://app.mailerlite.com/webforms/submit/YOUR_FORM_ID" data-webform-id="YOUR_FORM_ID" method="POST" target="_blank">
-        <input type="email" name="fields[email]" placeholder="Your email (e.g., jess@nyu.edu)" required />
-        <button type="submit">Get the Free Plan</button>
-        <p class="small">Check your inbox for the 7-day challenge!</p>
-      </form>
-
-      <!-- MailerLite JS -->
       <!-- MailerLite Embedded Form -->
-<div id="mlb2-30154274" class="ml-form-embedContainer">
-  <div class="ml-form-embedWrapper embedForm">
-    <div class="ml-form-embedContent">
-      <h4>Join the 7-Day Workout Challenge</h4>
-      <p>Free daily videos. No equipment. Start today.</p>
-    </div>
+      <div id="mlb2-YOUR_FORM_ID_HERE" class="ml-form-embedContainer">
+        <div class="ml-form-embedWrapper embedForm">
+          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1717265/forms/163906284649711433/subscribe" method="post" target="_blank">
+            <div class="ml-form-formContent">
+              <div class="ml-form-fieldRow ml-last-item">
+                <input 
+                  type="email" 
+                  name="fields[email]" 
+                  placeholder="Your email (e.g., jess@nyu.edu)" 
+                  required 
+                  style="width: 100%; padding: 15px; font-size: 1em; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box;" />
+              </div>
+              <div class="ml-form-embedSubmit" style="margin-top: 15px;">
+                <button 
+                  type="submit" 
+                  style="background: var(--primary); color: white; padding: 15px; font-size: 1.1em; border: none; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(30, 102, 199, 0.2);">
+                  Get the Free Plan
+                </button>
+              </div>
+              <input type="hidden" name="ml-submit" value="1">
+            </div>
 
-    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1717265/forms/163906284649711433/subscribe" method="post" target="_blank">
-      <div class="ml-form-fieldRow ml-last-item">
-        <input type="email" name="fields[email]" placeholder="Enter your email" required />
+            <!-- Success Message -->
+            <div class="ml-form-successBody" style="display: none; text-align: center; padding: 20px; background: #f0f8ff; border-radius: 8px; margin-top: 15px;">
+              <h4 style="color: #1E66C7;">✅ Thank You!</h4>
+              <p style="color: #333;">Check your inbox — your 7-Day Challenge starts now!</p>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <div class="ml-form-embedSubmit">
-        <button type="submit" class="primary">Start My Free Challenge</button>
-      </div>
-
-      <input type="hidden" name="ml-submit" value="1">
-    </form>
-
-    <div class="ml-form-successBody" style="display:none">
-      <div class="ml-form-successContent">
-        <h4>Thank you!</h4>
-        <p>You have successfully joined our subscriber list.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- MailerLite Webform Tracking Script -->
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+      <!-- MailerLite Webform Script -->
+      <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-      <p>Loved by students at <strong>NYU, UCLA, UOL and 10+ campuses”</strong>, and more</p>
+      <p>Loved by students at <strong>NYU, UCLA, UOL and 10+ campuses</strong>, and more</p>
       <p><small>Early access closing soon — join before we go premium.</small></p>
     </footer>
 
