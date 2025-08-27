@@ -78,6 +78,7 @@ And every time you do, you build:
 
 Small actions, repeated, change how you feel — not just how you look.
 
+https://noequipmentworkouts.github.io/LiftFocus/
 ---
 
 > Created by people who’ve been tired, busy, and inconsistent.  
